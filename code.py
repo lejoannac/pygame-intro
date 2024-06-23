@@ -43,3 +43,28 @@ while True:
         pygame.draw.rect(screen, pygame.Color('red'), process_text_rect)
 
     screen.blit(process_text, process_text_rect)
+    for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if quit_text_rect.collidepoint(mouse):
+                    pygame.quit()
+                    sys.exit()
+                if process_text_rect.collidepoint(mouse):
+                    background = pygame.image.load(DATA_BG)             
+                    background = pygame.transform.scale(background, (500, 500))
+                    
+                    # process dataset
+                    result = csvReader.processCSV('dataset/cybersecurity_attacks.csv', 'attack type')
+
+                    # display results
+                    result_text = result_font.render(result, True, pygame.Color('Green'), pygame.Color('black'))
+                    result_text_rect = result_text.get_rect(center=(250, 400))
+                    
+                    displayResults = True
+
+        pygame.display.update()
+
+        clock.tick(60)
+        
