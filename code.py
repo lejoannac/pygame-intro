@@ -63,8 +63,7 @@ while True:
                     result_text_rect = result_text.get_rect(center=(250, 400))
                     
                     displayResults = True
+    pygame.display.update()
 
-        pygame.display.update()
-
-        clock.tick(60)
+    clock.tick(60)
         
